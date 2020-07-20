@@ -4,6 +4,7 @@ package simulator.wrapper.wrappers;
 import java.util.*;
 
 import simulator.control.Simulator;
+import simulator.gates.combinational.*;
 import simulator.network.Link;
 import simulator.wrapper.And32;
 import simulator.wrapper.Nor32;
@@ -81,6 +82,7 @@ public class ALU extends Wrapper {
 		
 		//:::: Multiplexers ::::
 
+		Link zero = Simulator.falseLogic ;
 		
 		for (int i = 0 ; i < 32 ; i++) {
 			
@@ -113,10 +115,18 @@ public class ALU extends Wrapper {
 			//Multiplexers bits adding
 			mux3.addInput(mux1.getOutput(0) , mux2.getOutput(0)  );
 			
+			//Zero detection
+			Or or1 = new Or("OR1!1", mux3.getOutput(0) , zero ) ;
+			zero = or1.getOutput(0) ;
+			
 			// :::: It's time for Output bits to take off from ALU Airport :D ::::
+			 
 			addOutput(mux3.getOutput(0));
+			
 			//System.out.printf("this is %d and res is %b\n--------------------\n" , i , mux3.getOutput(0).getSignal());
 		}
+		Not nt1 = new Not("NOT1!1", zero) ; 
+		addOutput(nt1.getOutput(0));
 		
 		
 		

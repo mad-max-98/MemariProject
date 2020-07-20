@@ -20,8 +20,8 @@ public class Sample {
 //        Mux4x1 mux = new Mux4x1("MUX", "6X1", Simulator.falseLogic, Simulator.trueLogic,
 //                Simulator.falseLogic, Simulator.trueLogic, Simulator.trueLogic, Simulator.falseLogic);
     	Link [] ln1 = {Simulator.falseLogic , Simulator.trueLogic , Simulator.falseLogic , Simulator.trueLogic } ;
-    	Link [] ln2 = {Simulator.falseLogic , Simulator.trueLogic , Simulator.trueLogic , Simulator.falseLogic } ;
-    	Link [] aluIn = {Simulator.trueLogic , Simulator.trueLogic , Simulator.falseLogic , Simulator.falseLogic};
+    	Link [] ln2 = {Simulator.falseLogic , Simulator.falseLogic , Simulator.trueLogic , Simulator.falseLogic } ;
+    	Link [] aluIn = {Simulator.falseLogic , Simulator.falseLogic , Simulator.falseLogic , Simulator.falseLogic};
     	SignExtend16To32 sgn1 = new SignExtend16To32("SGN1", "4X32", ln1) ;
     	SignExtend16To32 sgn2 = new SignExtend16To32("SGN2", "4X32", ln2) ;
     	ln1 = (Link []) sgn1.getOutputs().toArray(ln1) ;
@@ -38,7 +38,7 @@ public class Sample {
     	//Slt32 sl1 = new Slt32("slt" ,"64X32");
     	//Mux2x1 sl1 = new Mux2x1("MUX", "3X1") ;
     	//sl1.addInput(Simulator.falseLogic);
-    	ALU sl1 = new ALU("ALU", "68X32");
+    	ALU sl1 = new ALU("ALU", "68X33");
     	sl1.addInput(aluIn);
     	sl1.addInput( ln1 );
     	sl1.addInput( ln2 );
